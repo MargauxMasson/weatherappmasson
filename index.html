@@ -1,0 +1,189 @@
+<!doctype>
+<html lang="en">
+<head>
+    <base href="/">
+    <title>Weather Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.js"></script>
+    <script src="node_modules/angular2/bundles/router.dev.js"></script>
+    <script src="node_modules/angular2/bundles/http.js"></script>
+
+<!-- COOKIES -->
+  <script language="JavaScript">
+  var s=0;
+
+
+    function getCookieVal (offset) {
+      var endstr = document.cookie.indexOf (";", offset);
+      if (endstr == -1)
+        endstr = document.cookie.length;
+      return unescape(document.cookie.substring(offset, endstr));
+    }
+    
+    function GetCookie (name) {
+      var arg = name + "=";
+      var alen = arg.length;
+      var clen = document.cookie.length;
+      var i = 0;
+      while (i < clen) {
+        var j = i + alen;
+        if (document.cookie.substring(i, j) == arg)
+          return getCookieVal (j);
+    	i = document.cookie.indexOf(" ", i) + 1;
+        if (i == 0) break; 
+      }
+      return null;
+    }
+
+    function FixCookieDate (date) {
+      var base = new Date(0);
+      var skew = base.getTime(); 
+      if (skew > 0)  
+        date.setTime (date.getTime() - skew);
+    }
+
+    function ExpirationDate(duration_days) {
+      var expiration = new Date();     // date et heure courante en format texte
+      FixCookieDate (expiration);      // correction du "date bug" sur Macintosh
+      expiration.setTime(expiration.getTime() + (duration_days * 24*60*60*1000));
+        // - getTime convertit date/heure du format texte -> nombre de msec. depuis le 1.1.1970
+        // - puis setTime reconvertit date en format texte GMT pour la passer à SetCookie
+      return expiration;
+    }
+
+    function SetCookie (name,value,expires,path,domain,secure) {
+      document.cookie = name + "=" + escape (value) + ((expires) ? "; expires=" + expires.toGMTString() : "") ;
+    }
+    
+    function ChooseName(name) {
+      expiration = ExpirationDate(100);  // 100 days
+      SetCookie("cityname",name,expiration); 
+    }
+  </script>
+
+  
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">     <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/style.css">   
+      
+
+</head>
+
+<body class="body">
+<my-app>Loading ... </my-app>
+
+
+<script>
+    
+    System.config({
+        packages: {
+            app: {
+                format: 'register',
+                defaultExtension: 'js'
+            }
+        }
+    });
+    System.import('app/boot')
+            .then(null, console.error.bind(console));
+
+///////////////////////////////// FUNCTIONS ////////////////////////////////////////////////
+        
+////////////////COOKIES : save the last city researched////////////////////
+function cookieLastCity(){
+            last_city = GetCookie("cityname");  // we keep the last city researched
+            if (last_city != null) {
+            var cooke="Welcome! Want to know the weather in " + last_city + " again ?";
+            document.getElementById("cookie").innerHTML=cooke;
+            ChooseName(last_city);   //we set the value (name of the city) in the cookie
+            } else {
+            var cooke="Welcome! ";
+            document.getElementById("cookie").innerHTML=cooke;
+        }
+}
+
+////////////////Search the last city researched directly //////////////////////
+function LastCitySearch(){
+    last_city = GetCookie("cityname");
+    document.getElementById("city").value=last_city;
+    Day_Month();
+
+}
+
+/////////////Function for having the current date & forecast dates//////////////// 
+    function Day_Month(){
+        var d = new Date();
+        var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        var NumDate= d.getDate();
+        var NumMonth = d.getMonth();
+        if((NumDate==31 && (NumMonth+1)%2 == 1) || (NumDate==30 && (NumMonth+1)%2 == 0)) { //If it's the end of the month
+            NumDate=0;
+            if(d.getMonth()==11){  //if it's the end of the year (december)
+                NumMonth=0;
+            }
+            else{
+                NumMonth=NumMonth+1;
+            }
+        }
+        document.getElementById("date0").value = days[d.getDay()] +" "+ d.getDate() + " " + months[NumMonth];
+        document.getElementById("date1").value = days[d.getDay()+1] +" "+ [NumDate+1] + " " + months[NumMonth];
+        document.getElementById("date2").value = days[d.getDay()+2] +" "+ [NumDate+2] + " " + months[NumMonth];
+        document.getElementById("date3").value = days[d.getDay()+3] +" "+ [NumDate+3] + " " + months[NumMonth];
+        document.getElementById("date4").value = days[d.getDay()+4] +" "+ [NumDate+4] + " " + months[NumMonth];
+        document.getElementById("date5").value = days[d.getDay()+5] +" "+ [NumDate+5]+ " " + months[NumMonth];
+        document.getElementById("date6").value = days[d.getDay()+6] +" "+ [NumDate+6] + " " + months[NumMonth];
+    }
+
+
+/////////Function for choosing the system : metric or imperial, and put the value in the element "system" & the unit in "unit"///////////
+    function SystemFunction() {
+        if(document.getElementById("field1").checked ==true ){
+            document.getElementById("system").value = "metric";            
+            document.getElementById("unit").value = "C";
+        }
+        if(document.getElementById("field2").checked ==true ){
+            document.getElementById("system").value = "imperial";            
+            document.getElementById("unit").value = "F";
+        }
+
+    }
+
+////////Function for choosing the language///////// 
+    function Language(){
+        document.getElementById("lang").value=document.getElementById("fr");
+    }
+
+
+////////Function for choosing between the city enter or Coordinates enter ///////// 
+    function whichcity(){
+        document.getElementById("which").value = 1;
+        Day_Month();
+    }    
+    function whichcoordinates(){
+        document.getElementById("which").value = 2;
+        Day_Month();
+    }
+
+//////////Function to limit the number of researches to 6, then the page reloads///////////////
+function LimitSearch(){
+        s=s+1;
+        //alert(s);
+        if(s == 7){
+            document.location.reload(false);
+        }
+}
+
+
+</script>
+</body>
+</html>

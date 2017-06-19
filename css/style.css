@@ -1,0 +1,291 @@
+.body{
+    background-image: url(sky.jpg);
+    background-size: 3000px;
+    background-repeat: no-repeat;
+}
+
+.cookie{
+    color: white;
+    text-align: center;
+    font-size: 120%;
+    opacity: 0.8;
+}
+.title{
+    height: 130px;
+    color: white;
+    text-align: center;
+}
+
+.white{
+    background-color: white;
+}
+
+.icon{
+    height: 90px;
+}
+
+.search{
+    text-align: center;
+    color: black;
+}
+
+.or{
+    font-size: 130%;
+}
+
+.card {
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #87CEEB;
+    border-radius: 8px;
+    text-align: center;
+    color: #1E90FF;
+    opacity: 0.8;
+    margin-left: 10%;
+    margin-right: 5%;
+    margin-bottom: 2%;
+    margin-top:2%;
+    padding: 0%;
+}
+
+.card:hover {
+
+    opacity: 1.0;
+}
+
+.card-forecast {
+    overflow: hidden;
+    position: relative;
+    font-size: 70%;
+    border-right: 1px solid #B0C4DE;
+    font-weight: 100%;
+    border-radius: 0px;
+    text-align: center;
+    padding: 0;
+    color: #1E90FF;
+    opacity: 0.7;
+    margin:0%;
+    height:190px;
+}
+
+.card-forecast:hover {
+
+    opacity: 1.0;
+}
+
+.card-today {
+    overflow: hidden;
+    position: relative;
+    font-size: 80%;
+    border-bottom: 1px solid #B0C4DE;
+    text-align: center;
+    padding: 0;
+    color: #1E90FF;
+    opacity: 0.8;
+    margin:0%;
+
+}
+
+.card-today:hover {
+
+    opacity: 1.0;
+}
+
+.card-forecast-right{
+    overflow: hidden;
+    position: relative;
+    font-weight: 100%;
+    border-right: 0px;
+    text-align: center;
+    padding: 0;
+    color: #1E90FF;
+    opacity: 0.7;
+}
+
+
+.card-forecast-right:hover {
+
+    opacity: 1.0;
+}
+
+.bar-search{
+    width: 10%;
+    border: 2px solid #87CEEB;
+    border-radius: 10px;
+}
+
+.button-search{
+
+    font-size: 80%;
+    text-align: center;
+}
+
+.button-search-last-city{
+
+    font-size: 70%;
+    width: 60px;
+    text-align: left;
+    padding:0.5%;
+}
+
+.lang-search{
+    height: 3%;
+    font-size: 70%;
+    text-align: center;
+    margin-right: 50%;
+}
+
+.forecastdate{
+    font-weight: bold;
+    font-size: 110%;
+}
+
+
+
+
+
+@media(max-width:720px){
+    .body{
+    background-image: url(sky.jpg);
+    background-size: 4600px;
+    background-repeat: no-repeat;
+}
+
+.cookie{
+    color: white;
+    text-align: center;
+    font-size: 130%;
+    opacity: 0.8;
+}
+.title{
+    height: 130px;
+    color:white;
+    text-align: center;
+}
+
+.black{
+    background-color: white;
+}
+
+.icon{
+    height: 90px;
+}
+
+.search{
+    text-align: center;
+    color: black;
+}
+
+.card {
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #87CEEB;
+    border-radius: 8px;
+    text-align: center;
+    color: #1E90FF;
+    opacity: 0.8;
+    margin-left: 10%;
+    margin-right: 5%;
+    margin-bottom: 2%;
+    margin-top:2%;
+    padding: 0%;
+}
+
+.card:hover {
+
+    opacity: 1.0;
+}
+
+.card-forecast {
+    overflow: hidden;
+    position: relative;
+    font-size: 70%;
+    border-right: 1px solid #B0C4DE;
+    font-weight: 100%;
+    border-radius: 0px;
+    text-align: center;
+    padding: 0;
+    color: #1E90FF;
+    opacity: 0.7;
+    margin:0%;
+    height:190px;
+}
+
+.card-forecast:hover {
+
+    opacity: 1.0;
+}
+
+.card-today {
+    overflow: hidden;
+    position: relative;
+    font-size: 80%;
+    border-bottom: 1px solid #B0C4DE;
+    text-align: center;
+    padding: 0;
+    color: #1E90FF;
+    opacity: 0.8;
+    margin:0%;
+
+}
+
+.card-today:hover {
+
+    opacity: 1.0;
+}
+
+.card-forecast-right{
+    overflow: hidden;
+    position: relative;
+    font-weight: 100%;
+    border-right: 0px;
+    text-align: center;
+    padding: 0;
+    color: #1E90FF;
+    opacity: 0.7;
+}
+
+
+.card-forecast-right:hover {
+
+    opacity: 1.0;
+}
+
+.bar-search{
+    width: 150px;
+    border: 2px solid #87CEEB;
+    border-radius: 10px;
+}
+
+.button-search{
+
+    font-size: 80%;
+    width: 110px;
+    text-align: center;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.button-search-last-city{
+
+    font-size: 60%;
+    width: 60px;
+    text-align: center;
+}
+
+.lang-search{
+    height: 25px;
+    width: 90px;
+    font-size: 70%;
+    text-align: center;
+    margin-right: 50%;
+    margin-bottom: 6%;
+    margin-top: 4%;
+}
+
+.forecastdate{
+    font-weight: bold;
+    font-size: 110%;
+}
+
+}
